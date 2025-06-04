@@ -1,10 +1,6 @@
 // External Modules
 const express = require("express");
 
-// Internal/Local Modules
-const handler = require("./user");
-// Create a server instance and pass the request handler
-
 const app = express();
 
 app.get("/", (req, res, next) => {
