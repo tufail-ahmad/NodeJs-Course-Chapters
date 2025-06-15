@@ -1,1 +1,23 @@
-[{"houseName":"utsav","price":"999","location":"Chandausi","rating":"4","photoUrl":"zxz"},{"houseName":"Ahmad Villa","price":"1299","location":"Moradabad","rating":"5","photoUrl":"dfs"},{"houseName":"Tufail House","price":"2000","location":"Delhi","rating":"5","photoUrl":"zxz"}]
+[
+  {
+    "houseName": "utsav",
+    "price": "999",
+    "location": "Chandausi",
+    "rating": "4",
+    "photoUrl": "zxz"
+  },
+  {
+    "houseName": "Ahmad Villa",
+    "price": "1299",
+    "location": "Moradabad",
+    "rating": "5",
+    "photoUrl": "dfs"
+  },
+  {
+    "houseName": "Tufail House",
+    "price": "2000",
+    "location": "Delhi",
+    "rating": "5",
+    "photoUrl": "zxz"
+  }
+]
