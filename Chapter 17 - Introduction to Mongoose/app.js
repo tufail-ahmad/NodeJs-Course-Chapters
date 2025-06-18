@@ -10,7 +10,6 @@ const hostRouter = require("./routes/hostRouter");
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
 const { default: mongoose } = require("mongoose");
-const { error } = require("console");
 
 const app = express();
 
@@ -38,5 +37,5 @@ mongoose
     });
   })
   .catch((err) => {
-    console.log("Error while connectig to Mongo: ", err);
+    console.log("Error while connecting to Mongo: ", err);
   });
