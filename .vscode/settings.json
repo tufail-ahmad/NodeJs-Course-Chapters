@@ -1,5 +1,7 @@
 {
   "liveServer.settings.proxy": {
     "enable": true
-  }
+  },
+  "editor.codeActions.triggerOnFocusChange": false,
+  "editor.columnSelection": false
 }
