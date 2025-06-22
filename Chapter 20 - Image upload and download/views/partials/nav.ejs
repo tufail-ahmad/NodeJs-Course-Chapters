@@ -1,0 +1,108 @@
+<header class="bg-white shadow-md sticky top-0 z-20">
+  <nav class="container mx-auto px-4 py-2 flex items-center justify-between">
+    <!-- Logo Section -->
+    <a href="/" class="flex items-center space-x-2 group">
+      <svg class="w-9 h-9 text-red-500 group-hover:scale-110 transition-transform duration-200" viewBox="0 0 24 24"
+        fill="currentColor">
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+      </svg>
+      <span class="logo-text text-2xl font-bold text-red-500 tracking-wide">airbnb</span>
+    </a>
+    <!-- Navigation Links -->
+    <% if (typeof isLoggedIn !=='undefined' && isLoggedIn) { %>
+      <ul
+        class="flex items-center gap-2 md:gap-4 bg-gray-50 md:bg-transparent rounded-lg px-2 py-1 shadow-sm md:shadow-none">
+        <% if (user && user.userType==='guest' ) { %>
+          <li>
+            <a href="/homes" class="flex items-center gap-2 py-2 px-4 rounded-lg transition duration-200 font-medium
+                <%= currentPage === 'Home'
+                  ? 'bg-red-500 text-white shadow'
+                  : 'hover:bg-red-100 hover:text-red-600 text-gray-700' %>">
+              <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3" />
+              </svg>
+              Homes
+            </a>
+          </li>
+          <li>
+            <a href="/favourites" class="flex items-center gap-2 py-2 px-4 rounded-lg transition duration-200 font-medium
+                <%= currentPage === 'favourites'
+                  ? 'bg-red-500 text-white shadow'
+                  : 'hover:bg-red-100 hover:text-red-600 text-gray-700' %>">
+              <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+              </svg>
+              Favourites
+            </a>
+          </li>
+          <li>
+            <a href="/bookings" class="flex items-center gap-2 py-2 px-4 rounded-lg transition duration-200 font-medium
+                <%= currentPage === 'bookings'
+                  ? 'bg-red-500 text-white shadow'
+                  : 'hover:bg-red-100 hover:text-red-600 text-gray-700' %>">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Bookings
+            </a>
+          </li>
+          <% } else { %>
+            <li>
+              <a href="/host/host-home-list" class="flex items-center gap-2 py-2 px-4 rounded-lg transition duration-200 font-medium
+                <%= currentPage === 'host-homes'
+                  ? 'bg-red-500 text-white shadow'
+                  : 'hover:bg-red-100 hover:text-red-600 text-gray-700' %>">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M20 21V7.236a2 2 0 00-.553-1.414l-6-6a2 2 0 00-2.894 0l-6 6A2 2 0 004 7.236V21" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 21V12h6v9" />
+                </svg>
+                Host Homes
+              </a>
+            </li>
+            <li>
+              <a href="/host/add-home" class="flex items-center gap-2 py-2 px-4 rounded-lg transition duration-200 font-medium
+                <%= currentPage === 'addHome'
+                  ? 'bg-red-500 text-white shadow'
+                  : 'hover:bg-red-100 hover:text-red-600 text-gray-700' %>">
+                <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                Add Home
+              </a>
+            </li>
+            <% } %>
+      </ul>
+      <% } %>
+        <!-- Auth Buttons -->
+        <div class="flex items-center gap-2">
+          <% if (!isLoggedIn) { %>
+            <a href="/signup"
+              class="py-2 px-4 rounded-lg border border-red-500 text-red-500 font-semibold transition duration-200 hover:bg-red-50 <%= currentPage === 'signup' ? 'bg-red-100' : '' %>">Sign
+              up</a>
+            <a href="/login"
+              class="py-2 px-4 rounded-lg bg-red-500 text-white font-semibold transition duration-200 hover:bg-red-600 <%= currentPage === 'login' ? 'ring-2 ring-red-300' : '' %>">Log
+              in</a>
+            <% } else { %>
+              <form action="/logout" method="POST">
+                <button type="submit"
+                  class="py-2 px-4 rounded-lg border border-red-500 text-red-500 font-semibold transition duration-200 hover:bg-red-50 flex items-center">Logout</button>
+              </form>
+              <% } %>
+        </div>
+        <!-- Mobile Menu Button (optional for future) -->
+        <!--
+    <button class="md:hidden flex items-center">
+      <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    -->
+  </nav>
+</header>
