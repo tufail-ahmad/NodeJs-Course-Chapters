@@ -5,6 +5,8 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const { default: mongoose } = require("mongoose");
+const multer = require("multer");
 const DB_PATH =
   "mongodb+srv://tufailahmad:ahmadashrafi@ahmadcluster.l8fjfsx.mongodb.net/airbnb?retryWrites=true&w=majority&appName=ahmadCluster";
 
@@ -14,7 +16,6 @@ const hostRouter = require("./routes/hostRouter");
 const authRouter = require("./routes/authRouter");
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
-const { default: mongoose } = require("mongoose");
 
 const app = express();
 
@@ -26,7 +27,14 @@ const store = new MongoDBStore({
   collection: "sessions",
 });
 
+const multerOptions = {
+  dest: "uploads/",
+};
+
 app.use(express.urlencoded());
+app.use(multer(multerOptions).single("photo"));
+app.use(express.static(path.join(rootDir, "public")));
+
 app.use(
   session({
     secret: "Tufail Ahmad Ashrafi Node Course",
@@ -49,8 +57,6 @@ app.use("/host", (req, res, next) => {
   }
 });
 app.use("/host", hostRouter);
-
-app.use(express.static(path.join(rootDir, "public")));
 
 app.use(errorsController.pageNotFound);
 
