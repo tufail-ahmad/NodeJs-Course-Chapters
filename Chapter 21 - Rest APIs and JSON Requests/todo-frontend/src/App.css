@@ -1,0 +1,33 @@
+.kg-row {
+  text-align: left;
+  margin: 10px;
+  position: relative;
+  align-items: center;
+  left: 10%;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+}
+
+.kg-btn {
+  width: 80%;
+}
+.kg-icon {
+  width: 20%;
+  height: 20%;
+}
+
+#root {
+  background: linear-gradient(
+    80deg,
+    rgba(238, 174, 202, 1) 20%,
+    rgba(148, 187, 233, 1) 84%
+  );
+  height: 100vh;
+  font-size: 1.1rem;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  overflow: hidden;
+}
