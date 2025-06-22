@@ -4,16 +4,22 @@ const path = require("path");
 // External Module
 const express = require("express");
 const { default: mongoose } = require("mongoose");
+const cors = require("cors");
 const DB_PATH =
   "mongodb+srv://tufailahmad:ahmadashrafi@ahmadcluster.l8fjfsx.mongodb.net/todo?retryWrites=true&w=majority&appName=ahmadCluster";
 
 // local modules
 const errorsController = require("./controllers/errors");
+const todoItemsRouter = require("./routes/todoItemsRouter");
 
 const app = express();
 
 app.use(express.urlencoded());
-app.use(express.static(path.join(rootDir, "public")));
+app.use(express.json());
+app.use(cors());
+
+app.use("/api/todo", todoItemsRouter);
+
 app.use(errorsController.pageNotFound);
 
 const PORT = 3000;
